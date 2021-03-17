@@ -33,7 +33,7 @@ api = WebexTeamsAPI(access_token=WT_BOT_TOKEN)
 # defining the decorater and route registration for incoming alerts
 @app.route('/', methods=['POST'])
 def alert_received():
-    raw_json = request.get_json()
+    raw_json = request.json()
     print(raw_json)
 
     # customize the behaviour of the bot here
@@ -41,7 +41,7 @@ def alert_received():
 
     # uncomment if you are implementing a notifier bot
     
-    api.messages.create(roomId=WT_ROOM_ID, markdown=message)
+    api.messages.create(roomId=WT_ROOM_ID, text=raw_json)
     
 
 
